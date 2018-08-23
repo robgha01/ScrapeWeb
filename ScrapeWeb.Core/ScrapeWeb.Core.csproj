@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A2F5090D-055D-4A44-8E2A-74B93787D7F9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ScrapeWeb.Core</RootNamespace>
+    <AssemblyName>ScrapeWeb.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AlphaChiTech.Virtualization">
+      <HintPath>..\packages\VirtualizingObservableCollection.1.2.0\lib\AlphaChiTech.Virtualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="ExCSS">
+      <HintPath>..\packages\ExCSS.2.0.6\lib\net45\ExCSS.dll</HintPath>
+    </Reference>
+    <Reference Include="FSharp.Core, Version=4.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\ScrapySharp.2.2.63\lib\net40\FSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\ScrapySharp.2.2.63\lib\net40\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="MoreLinq.Portable">
+      <HintPath>..\packages\MoreLinq.Portable.1.1.0\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\MoreLinq.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="ScrapySharp">
+      <HintPath>..\packages\ScrapySharp.2.2.63\lib\net40\ScrapySharp.dll</HintPath>
+    </Reference>
+    <Reference Include="ScrapySharp.Core">
+      <HintPath>..\packages\ScrapySharp.2.2.63\lib\net40\ScrapySharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstraction\IScrapeFilter.cs" />
+    <Compile Include="Abstraction\EnumerablePostFactory.cs" />
+    <Compile Include="Abstraction\IScrapeManager.cs" />
+    <Compile Include="Abstraction\IWebPageFactory.cs" />
+    <Compile Include="Abstraction\PostUrlFactory.cs" />
+    <Compile Include="Bakabt\Abstraction\IInformationType.cs" />
+    <Compile Include="Bakabt\BakabtHelper.cs" />
+    <Compile Include="Bakabt\BakaBtScrapeManager.cs" />
+    <Compile Include="Bakabt\ScrapeFilters\GeneresFilter.cs" />
+    <Compile Include="Bakabt\ScrapeFilters\UrlFilter.cs" />
+    <Compile Include="Bakabt\ScrapeFilters\CategoryFilter.cs" />
+    <Compile Include="Bakabt\ScrapeFilters\CoverFilter.cs" />
+    <Compile Include="Bakabt\ScrapeFilters\ScrapeFilterBase.cs" />
+    <Compile Include="Bakabt\ScrapeFilters\TitleFilter.cs" />
+    <Compile Include="Bakabt\BakabtDependencyInstaller.cs" />
+    <Compile Include="Bakabt\Factories\LastEnumerablePostsFactory.cs" />
+    <Compile Include="Bakabt\Factories\LastPostsUrlFactory.cs" />
+    <Compile Include="Bakabt\InformationType.cs" />
+    <Compile Include="Bakabt\PostEntity.cs" />
+    <Compile Include="Bakabt\PostsPagedSourceProvider.cs" />
+    <Compile Include="MediaManager\Exceptions\RssException.cs" />
+    <Compile Include="ServiceLocator.cs" />
+    <Compile Include="Factories\DefaultWebPageFactory.cs" />
+    <Compile Include="Factories\WebPageFactoryBase.cs" />
+    <Compile Include="Helpers\ImageHelper.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="ScrapeFilterBase.cs" />
+    <Compile Include="Abstraction\IPost.cs" />
+    <Compile Include="MediaManager\Abstraction\IReadBehavior.cs" />
+    <Compile Include="MediaManager\Behaviors\Read\UrlReader.cs" />
+    <Compile Include="MediaManager\Abstraction\IMediaManager.cs" />
+    <Compile Include="MediaManager\MediaManager.cs" />
+    <Compile Include="MediaManager\MediaManagerBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BrowserTabViewModel.cs" />
+    <Compile Include="ViewModels\BrowserWindowViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\PostViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

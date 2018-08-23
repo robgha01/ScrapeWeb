@@ -1,0 +1,112 @@
+﻿<Window x:Class="ScrapeWeb.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="BakaBt Media"
+        WindowStartupLocation="CenterScreen"
+        SizeToContent="WidthAndHeight"
+        MinHeight="300"
+        MinWidth="535"
+        xmlns:vm="clr-namespace:ScrapeWeb.Core.ViewModels;assembly=ScrapeWeb.Core">
+    <Window.Background>
+        <SolidColorBrush Color="PowderBlue"/>
+    </Window.Background>
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="TransparentBlack" Color="Black" Opacity="0.5" />
+        
+        <Style x:Key="ContentStyleTextblock" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontWeight" Value="DemiBold" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="CoverStyle" TargetType="{x:Type Image}">
+            <Setter Property="MinHeight" Value="400" />
+        </Style>
+
+        <Style x:Key="PostItemOnMouseOver" TargetType="{x:Type Grid}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Yellow">
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--<DataTemplate x:Key="ItemTemplate">
+            <WrapPanel>
+                <Image Width="200" Height="300" Stretch="Fill" Source="{Binding  }"/>
+                <TextBlock Text="{Binding }"/>
+            </WrapPanel>
+        </DataTemplate>-->
+    </Window.Resources>
+    
+    <Window.Style>
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
+    </Window.Style>
+
+    <Window.DataContext>
+        <vm:MainWindowViewModel x:Name="MainWindowViewModel" />
+    </Window.DataContext>
+    <Grid x:Name="Main">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/bg.jpg" Stretch="UniformToFill" Opacity="0.7"/>
+        </Grid.Background>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Path=LastPosts, IsAsync=True}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PostItemOnMouseOver}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                            <Image VerticalAlignment="Top"
+                                       Name="Cover"
+                                       HorizontalAlignment="Right"
+                                       Margin="0,0,8,0"
+                                       Source="{Binding Cover}"
+                                       Grid.Column="0"
+                                       Grid.Row="0"
+                                       Stretch="Uniform"
+                                       SnapsToDevicePixels="True" 
+                                       Height="{Binding ElementName=Contents, Path=ActualHeight}"
+                                       Style="{StaticResource CoverStyle}"/>
+
+                            <StackPanel VerticalAlignment="Bottom"
+                                            HorizontalAlignment="Left"
+                                            Name="Contents"
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Orientation="Vertical"
+                                            Width="{Binding ElementName=Cover, Path=ActualWidth}"
+                                            Background="{StaticResource TransparentBlack}">
+                                    
+                                    <StackPanel.Resources>
+                                        <Style BasedOn="{StaticResource ContentStyleTextblock}" TargetType="{x:Type TextBlock}" />
+                                    </StackPanel.Resources>
+                                    <TextBlock Text="{Binding Title}"/>
+                                    <TextBlock Text="Author"/>
+                                    <TextBlock Text="Version"/>
+                                    <TextBlock Text="Description"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</Window>

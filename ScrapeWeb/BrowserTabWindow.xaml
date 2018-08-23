@@ -1,0 +1,15 @@
+﻿<Window x:Class="ScrapeWeb.BrowserTabWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:extensions="clr-namespace:ScrapeWeb.Extensions"
+        Title="BrowserTabWindow"
+        WindowStyle="None"
+        ShowInTaskbar="False"
+        extensions:WindowExtensions.ShowIcon="False"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        >
+    <Grid>
+        
+    </Grid>
+</Window>
